@@ -29,6 +29,9 @@ class ToDo
     #[ORM\JoinColumn(nullable: false, name: 'person_uuid', referencedColumnName: 'uuid')]
     private ?Person $person = null;
 
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $comments = null;
+
     public function getUuid(): ?string
     {
         return $this->uuid;
@@ -85,6 +88,18 @@ class ToDo
     public function setIsCompleted(bool $is_completed): static
     {
         $this->is_completed = $is_completed;
+
+        return $this;
+    }
+
+    public function getComments(): ?string
+    {
+        return $this->comments;
+    }
+
+    public function setComments(?string $comments): static
+    {
+        $this->comments = $comments;
 
         return $this;
     }

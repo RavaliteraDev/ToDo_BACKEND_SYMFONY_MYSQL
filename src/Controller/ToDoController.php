@@ -31,6 +31,7 @@ class ToDoController extends AbstractController
         if(isset($data["title"])) $toDo->setTitle($data["title"]);
         if(isset($data["description"])) $toDo->setDescription($data["description"]);
         if(isset($data["due_date"])) $toDo->setDueDate(new DateTime($data["due_date"]));
+        if(isset($data["comments"])) $toDo->setComments($data["comments"]);
         if(isset($data["is_completed"])) $toDo->setIsCompleted($data["is_completed"]);
         if(isset($data["person_uuid"])) $toDo->setPerson($this->entityManager->getRepository(Person::class)->find($data["person_uuid"]));
         $this->entityManager->persist($toDo);
@@ -47,6 +48,7 @@ class ToDoController extends AbstractController
                 "uuid" => $toDo->getUuid(),
                 "title" => $toDo->getTitle(),
                 "description" => $toDo->getDescription(),
+                "comments" => $toDo->getComments(),
                 "due_date" => $toDo->getDueDate(),
                 "is_completed" => $toDo->getIsCompleted(),
                 "person_uuid" => $toDo->getPerson()->getUuid()
@@ -65,6 +67,7 @@ class ToDoController extends AbstractController
             $data = json_decode($request->getContent(), true);
             if(isset($data["title"])) $toDo->setTitle($data["title"]);
             if(isset($data["description"])) $toDo->setDescription($data["description"]);
+            if(isset($data["comments"])) $toDo->setComments($data["comments"]);
             if(isset($data["due_date"])) $toDo->setDueDate(new DateTime($data["due_date"]));
             if(isset($data["is_completed"])) $toDo->setIsCompleted($data["is_completed"]);
             $this->entityManager->flush();
@@ -99,6 +102,7 @@ class ToDoController extends AbstractController
                     "title" => $toDo->getTitle(),
                     "description" => $toDo->getDescription(),
                     "due_date" => $toDo->getDueDate(),
+                    "comments" => $toDo->getComments(),
                     "is_completed" => $toDo->getIsCompleted(),
                     "person_uuid" => $toDo->getPerson()->getUuid()
                 ];

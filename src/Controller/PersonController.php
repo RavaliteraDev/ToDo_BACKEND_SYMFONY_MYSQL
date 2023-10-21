@@ -26,8 +26,8 @@ class PersonController extends AbstractController
         $data = json_decode($request->getContent(), true);
         $person = new Person();
         $person->setUuid(Uuid::v7());
-        if(isset($data["last_name"])) $person->setLastName($data["last_name"]);
-        if(isset($data["first_name"])) $person->setFirstName($data["first_name"]);
+        if(isset($data["full_name"])) $person->setFullName($data["full_name"]);
+        if(isset($data["user_name"])) $person->setUserName($data["user_name"]);
         if(isset($data["email_address"])) $person->setEmailAddress($data["email_address"]);
         if(isset($data["phone_number"])) $person->setPhoneNumber($data["phone_number"]);
         if(isset($data["password"])) $person->setPassword($data["password"]);
@@ -43,8 +43,8 @@ class PersonController extends AbstractController
         if(isset($person)) {
             $data = [
                 "uuid" => $person->getUuid(),
-                "last_name" => $person->getLastName(),
-                "first_name" => $person->getFirstName(),
+                "full_name" => $person->getFullName(),
+                "user_name" => $person->getUserName(),
                 "email" => $person->getEmailAddress(),
                 "phone_number" => $person->getPhoneNumber(),
                 "is_activated" => $person->getIsActivated()
@@ -61,8 +61,8 @@ class PersonController extends AbstractController
         $person = $this->entityManager->getRepository(Person::class)->find($uuid);
         if(isset($people)) {            
             $data = json_decode($request->getContent(), true);
-            if(isset($data["last_name"])) $person->setLastName($data["last_name"]);
-            if(isset($data["first_name"])) $person->setFirstName($data["first_name"]);
+            if(isset($data["full_name"])) $person->setFullName($data["full_name"]);
+            if(isset($data["user_name"])) $person->setUserName($data["user_name"]);
             if(isset($data["email_address"])) $person->setEmailAddress($data["email_address"]);
             if(isset($data["phone_number"])) $person->setPhoneNumber($data["phone_number"]);
             if(isset($data["password"])) $person->setPassword($data["password"]);
@@ -96,8 +96,8 @@ class PersonController extends AbstractController
             foreach($people as $person) {
                 $data[] = [
                     "uuid" => $person->getUuid(),
-                    "last_name" => $person->getLastName(),
-                    "first_name" => $person->getFirstName(),
+                    "full_name" => $person->getFullName(),
+                    "user_name" => $person->getUserName(),
                     "email" => $person->getEmailAddress(),
                     "phone_number" => $person->getPhoneNumber(),
                     "is_activated" => $person->getIsActivated()

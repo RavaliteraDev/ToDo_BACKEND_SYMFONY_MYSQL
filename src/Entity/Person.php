@@ -14,10 +14,10 @@ class Person
     private ?string $uuid = null;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $last_name = null;
+    private ?string $full_name = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $first_name = null;
+    #[ORM\Column(type: Types::TEXT)]
+    private ?string $user_name = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $email_address = null;
@@ -43,26 +43,26 @@ class Person
         return $this;
     }
 
-    public function getLastName(): ?string
+    public function getFullName(): ?string
     {
-        return $this->last_name;
+        return $this->full_name;
     }
 
-    public function setLastName(?string $last_name): static
+    public function setFullName(string $full_name): static
     {
-        $this->last_name = $last_name;
+        $this->full_name = $full_name;
 
         return $this;
     }
 
-    public function getFirstName(): ?string
+    public function getUserName(): ?string
     {
-        return $this->first_name;
+        return $this->user_name;
     }
 
-    public function setFirstName(?string $first_name): static
+    public function setUserName(string $user_name): static
     {
-        $this->first_name = $first_name;
+        $this->user_name = $user_name;
 
         return $this;
     }
